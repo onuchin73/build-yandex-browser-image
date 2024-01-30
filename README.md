@@ -1,6 +1,11 @@
 # Build yandex browser image for selenoid
 
-`BROWSER_VERSION` = Версия браузера из [репозиротия яндекса](https://repo.yandex.ru/yandex-browser/deb/pool/main/y/yandex-browser-stable/).  
-`DRIVER_VERSION` = Linux версия драйвера для яндекс браузера из [репозиротия яндекса](https://github.com/yandex/YandexDriver/releases/).  
+`$BROWSER_VERSION` = Browser version from [Yandex repository](https://repo.yandex.ru/yandex-browser/deb/pool/main/y/yandex-browser-stable/).  
+`$DRIVER_VERSION` = Linux version of the Yandex browser driver from [Yandex repository](https://github.com/yandex/YandexDriver/releases/). 
 
-> docker build --build-arg BROWSER_VERSION=$BROWSER_VERSION --build-arg DRIVER_VERSION=$DRIVER_VERSION -t sqaadmin/yandex_browser:$BROWSER_VERSION .
+`$BROWSER_VERSION` format = 1.1.1.1-1
+`$DRIVER_VERSION` format = 1.1.1.1
+
+#1 clone this repository : git clone https://github.com/onuchin73/build-yandex-browser-image.git
+#2 go to the folder : cd buildYandexBrowser
+#3 run build : docker build --build-arg BROWSER_VERSION=$BROWSER_VERSION --build-arg DRIVER_VERSION=$DRIVER_VERSION -t sqaadmin/yandex_browser:$BROWSER_VERSION .

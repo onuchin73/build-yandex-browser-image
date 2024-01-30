@@ -1,7 +1,7 @@
 FROM browsers/base:7.4.1
 
-ARG BROWSER_VERSION=1.1.1
-ARG DRIVER_VERSION=1.1.1
+ARG BROWSER_VERSION=1.1.1.1-1
+ARG DRIVER_VERSION=1.1.1.1
 
 LABEL browser=yandex-browser-stable:$BROWSER_VERSION
 
@@ -59,6 +59,14 @@ RUN \
          rm -Rf /tmp/* && \
          rm -Rf /var/lib/apt/lists/*
 
+RUN  \
+	curl -L -O \$(curl -s https://api.github.com/repos/yandex/YandexDriver/releases \
+		| grep browser_download_url \
+		| grep yandexdriver-$DRIVER_VERSION-linux.zip \
+		| cut -d '"' -f 4) && \
+        unzip -o yandexdriver-$DRIVER_VERSION-linux.zip -d ./ && \
+        rm -f yandexdriver-$DRIVER_VERSION-linux.zip
+        
 RUN  \
 	curl -s https://repo.yandex.ru/yandex-browser/YANDEX-BROWSER-KEY.GPG | apt-key add - && \
 	echo 'deb [arch=amd64] https://repo.yandex.ru/yandex-browser/deb stable main' > /etc/apt/sources.list.d/yandex-browser.list && \
